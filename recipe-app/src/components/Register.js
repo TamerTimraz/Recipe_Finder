@@ -16,6 +16,7 @@ function Register(){
 
         if(password.length < 8){
             setMessage("Password must be at least 8 characters long.")
+            return;
         }
 
         try {
@@ -23,7 +24,7 @@ function Register(){
                 username: username,
                 password: password
             });
-            setMessage('User registered successfully!');
+            setMessage(response.data);
         } catch(error){
             setMessage('Failed to register user.');
         }

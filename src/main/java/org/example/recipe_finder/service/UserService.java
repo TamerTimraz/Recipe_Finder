@@ -19,7 +19,14 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public String saveUser(User user) {
+        if(userRepository.existsByUsername(user.getUsername())) {
+            return "Username already exists";
+        }
+        if(userRepository.existsByPassword(user.getPassword())) {
+            return "Password already exists";
+        }
+        userRepository.save(user);
+        return "User registered successfully";
     }
 }
