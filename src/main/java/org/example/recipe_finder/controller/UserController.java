@@ -3,7 +3,6 @@ package org.example.recipe_finder.controller;
 import org.example.recipe_finder.model.User;
 import org.example.recipe_finder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +17,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/register")
     public String registerUser(@RequestBody User user) {
         return userService.saveUser(user);
@@ -28,13 +28,14 @@ public class UserController {
         return userService.findUserByUsername(username);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody User user) {
         User existingUser = userService.findUserByUsername(user.getUsername());
         if (existingUser != null && existingUser.getPassword().equals(user.getPassword())) {
             return ResponseEntity.ok("Login successful");
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            return ResponseEntity.ok("Invalid username or password");
         }
     }
 }

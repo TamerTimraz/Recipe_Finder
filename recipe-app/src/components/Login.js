@@ -15,11 +15,14 @@ function Login(){
                 username: username,
                 password: password
             });
-            if(response.data.equals("Login successful")){
+
+            if(response.data === "Login successful"){
                 // Redirect to main application
+                setMessage("Login Successful!");
             } else {
                 setMessage(response.data);
             }
+
         } catch(error){
             setMessage("Failed to login. Please try again later.");
         }
