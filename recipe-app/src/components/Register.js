@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Register(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,6 +27,9 @@ function Register(){
                 password: password
             });
             setMessage(response.data);
+            setTimeout(() => {
+                navigate('/login');
+            }, 2000);
         } catch(error){
             setMessage('Failed to register user.');
         }
@@ -50,6 +55,7 @@ function Register(){
                     />
                 <button type="submit">Register</button>
             </form>
+            <button onClick={(e) => {navigate('/login')}}>Back to Login</button>
             {message && <p>{message}</p>}
         </div>
     );
