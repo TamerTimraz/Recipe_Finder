@@ -21,6 +21,9 @@ function Login(){
             if(response.data === "Login successful"){
                 // Redirect to main application
                 setMessage("Login Successful!");
+                setTimeout(() => {
+                    navigate('/home');
+                }, 1000);
             } else {
                 setMessage(response.data);
             }
