@@ -42,3 +42,25 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+}
+
+.logout-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.logout-btn:hover {
+    background-color: #ff3333;
+}
