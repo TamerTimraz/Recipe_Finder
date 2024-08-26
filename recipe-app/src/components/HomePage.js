@@ -3,7 +3,7 @@ import RecipeSearch from "./RecipeSearch";
 
 const HomePage = () => {
     return (
-        <div>
+        <div style={{textAlign: "center"}}>
             <h1>Welcome to the Recipe App</h1>
             <p>Here you can search for, view, and save your favorite recipes!</p>
             <RecipeSearch />

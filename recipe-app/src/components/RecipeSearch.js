@@ -27,7 +27,7 @@ const RecipeSearch = () => {
 
     return (
         <div>
-            <form onSubmit={handleSearch}>
+            <form className="search-bar" onSubmit={handleSearch}>
                 <input
                     type="text"
                     value={query}
@@ -40,9 +40,9 @@ const RecipeSearch = () => {
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
 
-            <div>
+            <div className="recipe-list">
                 {recipes.map((recipe) => (
-                    <div key={recipe.id} >
+                    <div className="recipe-card" key={recipe.id} >
                         <h3>{recipe.title}</h3>
                         <img src={recipe.image} alt={recipe.title} />
                     </div>
