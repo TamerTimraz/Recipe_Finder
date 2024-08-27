@@ -26,37 +26,45 @@ function Register(){
                 username: username,
                 password: password
             });
-            setMessage(response.data);
-            setTimeout(() => {
-                navigate('/login');
-            }, 2000);
+
+            if(response.data === "User registered successfully!") {
+                setMessage(response.data);
+                setTimeout(() => {
+                    navigate('/login');
+                }, 2000);
+            } else {
+                setMessage(response.data);
+            }
         } catch(error){
             setMessage('Failed to register user.');
         }
     };
 
     return(
-        <div>
-            <h2>Register Page</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="register-container">
+            <form className="register-form" onSubmit={handleSubmit}>
+                <h2>Create Account</h2>
                 <input
                     type="text"
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
-                    />
+                />
                 <input
                     type="text"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    />
+                />
                 <button type="submit">Register</button>
+                <button onClick={(e) => {
+                    navigate('/login')
+                }}>Back to Login
+                </button>
+                {message && <p>{message}</p>}
             </form>
-            <button onClick={(e) => {navigate('/login')}}>Back to Login</button>
-            {message && <p>{message}</p>}
         </div>
     );
 }

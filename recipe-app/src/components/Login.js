@@ -34,27 +34,30 @@ function Login(){
     }
 
     return (
-        <div>
-            <h2>Login Page</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="login-container">
+            <form className="login-form" onSubmit={handleSubmit}>
+                <h2>Login</h2>
                 <input
                     type="text"
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
-                    />
+                />
                 <input
                     type="text"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    />
+                />
                 <button type="submit">Login</button>
+                <button type="button" onClick={(e) => {
+                    navigate('/register')
+                }}>Create Account
+                </button>
+                {message && <p>{message}</p>}
             </form>
-            <button onClick={(e) => {navigate('/register')}}>Register</button>
-            {message && <p>{message}</p>}
         </div>
     );
 }
