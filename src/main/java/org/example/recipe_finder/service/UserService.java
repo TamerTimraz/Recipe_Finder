@@ -21,12 +21,12 @@ public class UserService {
 
     public String saveUser(User user) {
         if(userRepository.existsByUsername(user.getUsername())) {
-            return "Username already exists";
+            return "Username already exists.";
         }
         if(userRepository.existsByPassword(user.getPassword())) {
-            return "Password already exists";
+            return "Password already exists.";
         }
         userRepository.save(user);
-        return "User registered successfully";
+        return "User registered successfully!";
     }
 }
