@@ -24,4 +24,14 @@ public class RecipeService {
 
         return restTemplate.getForObject(url, String.class);
     }
+
+    public String getRecipeDetails(Long recipeId) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        String url = UriComponentsBuilder.fromHttpUrl(SPOONACULAR_BASE_URL + "/" + recipeId + "/information")
+                .queryParam("apiKey", apiKey)
+                .toUriString();
+
+        return restTemplate.getForObject(url, String.class);
+    }
 }
