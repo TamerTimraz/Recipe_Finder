@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const RecipeSearch = () => {
+const RecipeSearch = ({ setRecipes }) => {
     const [query, setQuery] = useState('');
-    const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -24,7 +23,6 @@ const RecipeSearch = () => {
         }
     }
 
-
     return (
         <div>
             <form className="search-bar" onSubmit={handleSearch}>
@@ -39,15 +37,6 @@ const RecipeSearch = () => {
 
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
-
-            <div className="recipe-list">
-                {recipes.map((recipe) => (
-                    <div className="recipe-card" key={recipe.id} >
-                        <h3>{recipe.title}</h3>
-                        <img src={recipe.image} alt={recipe.title} />
-                    </div>
-                ))}
-            </div>
         </div>
     );
 };
