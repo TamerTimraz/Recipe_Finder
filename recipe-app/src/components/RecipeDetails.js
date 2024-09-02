@@ -20,19 +20,43 @@ const RecipeDetails = ({ recipe, onClose }) => {
 
     if(!details) return <p>Loading...</p>
 
+    // Standardize instructions
+    const standardizedInstruction = () => {
+        if(Array.isArray(details.analyzedInstructions) && details.analyzedInstructions.length > 0){
+            // Use the 'analyzedInstructions' array if available
+            return details.analyzedInstructions[0].steps.map((step, index) => (
+                <li key={index}>{step.step}</li>
+            ));
+        } else {
+            // Fall back to the 'instructions' string, splitting by period or new line
+            const instructionsArray = details.instructions.split(/(?:\.\s|\n)/).filter(step => step.trim() !== '');
+            return instructionsArray.map((step, index) => (
+                <li key={index}>{step}</li>
+            ));
+        }
+    };
+
     return (
-        <div className="recipe-details">
+        <div className="recipe-details-container">
             <button onClick={onClose}>Close</button>
-            <h2>{details.title}</h2>
+            <h2 className="recipe-title">{details.title}</h2>
             <img src={details.image} alt={details.title}/>
-            <h3>Ingredients:</h3>
-            <ul>
-                {details.extendedIngredients && details.extendedIngredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient.original}</li>
-                ))}
-            </ul>
-            <h3>Instructions:</h3>
-            <p dangerouslySetInnerHTML={{ __html: details.instructions}}></p>
+
+            <div className="ingredients">
+                <h3 className="section-header">Ingredients:</h3>
+                <ul className="ingredients-list">
+                    {details.extendedIngredients && details.extendedIngredients.map((ingredient, index) => (
+                        <li key={index}>{ingredient.original}</li>
+                    ))}
+                </ul>
+            </div>
+
+            <div className="instructions">
+                <h3 className="section-header">Instructions:</h3>
+                <ol className="instructions-list">
+                    {standardizedInstruction()}
+                </ol>
+            </div>
 
             {error && <p>{error}</p>}
         </div>
