@@ -154,3 +154,48 @@
 .register-form p {
     color: red;
 }
+
+.recipe-details-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.ingredients-list,
+.instructions-list {
+    margin-bottom: 20px;
+}
+
+.ingredients-list li,
+.instructions-list li {
+    margin: 5px 0;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.section-header {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #555;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    text-align: left;
+}
+
+.instructions-list ol {
+    padding-left: 20px;
+}
+
+.instructions-list ol li {
+    margin-bottom: 8px;
+}
