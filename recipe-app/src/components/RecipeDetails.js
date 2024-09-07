@@ -20,7 +20,7 @@ const RecipeDetails = () => {
         fetchRecipeDetails();
     }, [id]);
 
-    if(!details) return <p>Loading...</p>
+    if(!details) return;
 
     // Standardize instructions
     const standardizedInstruction = () => {
