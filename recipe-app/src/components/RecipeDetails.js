@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const RecipeDetails = ({ recipe, onClose }) => {
+const RecipeDetails = () => {
+    const { id } = useParams();
     const [details, setDetails] = useState(null);
     const [error, setError] = useState("");
 
     useEffect(() => {
         const fetchRecipeDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/recipes/${recipe.id}/information`);
+                const response = await axios.get(`http://localhost:8080/api/recipes/${id}/information`);
                 setDetails(response.data);
             } catch (err) {
                 setError("Failed to display recipe information.");
@@ -16,7 +18,7 @@ const RecipeDetails = ({ recipe, onClose }) => {
         };
 
         fetchRecipeDetails();
-    }, [recipe.id]);
+    }, [id]);
 
     if(!details) return <p>Loading...</p>
 
@@ -38,7 +40,6 @@ const RecipeDetails = ({ recipe, onClose }) => {
 
     return (
         <div className="recipe-details-container">
-            <button onClick={onClose}>Close</button>
             <h2 className="recipe-title">{details.title}</h2>
             <img src={details.image} alt={details.title}/>
 
