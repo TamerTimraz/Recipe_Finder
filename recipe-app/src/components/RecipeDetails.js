@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import {useParams, useNavigate, useLocation} from 'react-router-dom';
 import axios from 'axios';
 
 const RecipeDetails = () => {
@@ -7,6 +7,7 @@ const RecipeDetails = () => {
     const [details, setDetails] = useState(null);
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const fetchRecipeDetails = async () => {
@@ -40,7 +41,7 @@ const RecipeDetails = () => {
     };
 
     const handleBackToRecipeList = () => {
-        navigate("/home");
+        navigate("/home", { state: { recipes: location.state.recipes } });
     }
 
     return (

@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RecipeSearch from "./RecipeSearch";
 import RecipeList from "./RecipeList";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const HomePage = () => {
     const [recipes, setRecipes] = useState([]);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if(location.state && location.state.recipes) {
+            setRecipes(location.state.recipes);
+        }
+    }, [location.state]);
 
     const handleLogOut = (e) => {
         e.preventDefault();
@@ -13,7 +20,7 @@ const HomePage = () => {
     };
 
     const handleRecipeClick = (recipe) => {
-        navigate(`/recipes/${recipe.id}`);
+        navigate(`/recipes/${recipe.id}`, { state: { recipes } });
     };
 
     return (
