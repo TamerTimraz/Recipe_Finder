@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const RecipeDetails = () => {
     const { id } = useParams();
     const [details, setDetails] = useState(null);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchRecipeDetails = async () => {
@@ -38,8 +39,13 @@ const RecipeDetails = () => {
         }
     };
 
+    const handleBackToRecipeList = () => {
+        navigate("/home");
+    }
+
     return (
         <div className="recipe-details-container">
+            <button onClick={handleBackToRecipeList}>Back</button>
             <h2 className="recipe-title">{details.title}</h2>
             <img src={details.image} alt={details.title}/>
 
